@@ -11,7 +11,7 @@ def loadBlockConfiguration():
     return blocks
 
 
-def redistributeBlocks(blocks):
+def redistributeBlocks(blocks, showCycleSize=False):
     stepCount = 0
     seenBlocks = dict()
 
@@ -28,7 +28,10 @@ def redistributeBlocks(blocks):
         blockTuple = tuple(blocks)
 
         if blockTuple in seenBlocks:
-            return stepCount - seenBlocks[blockTuple]
+            if showCycleSize:
+                return stepCount - seenBlocks[blockTuple]
+            else:
+                return stepCount
         else:
             seenBlocks[blockTuple] = stepCount
 
@@ -38,6 +41,7 @@ def main():
     # blocks = [0, 2, 7, 0]
 
     print(redistributeBlocks(blocks.copy()))
+    print(redistributeBlocks(blocks.copy(), showCycleSize=True))
 
 
 if __name__ == '__main__':
