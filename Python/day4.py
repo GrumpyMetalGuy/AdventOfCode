@@ -1,7 +1,7 @@
 def loadPassphrases():
     phrases = []
 
-    with open('day4_input.txt', 'r') as phraseFile:
+    with open('../inputs/day4.txt', 'r') as phraseFile:
         line = phraseFile.readline()
 
         while line:
